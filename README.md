@@ -1,95 +1,488 @@
-IoTBay – IoT Devices Ordering Web Application
+# IoTBay Web Application
 
-Project Description
+## Project Overview
 
-IoTBay is a Java-based web application developed for managing an online IoT devices store. The system allows customers to register, browse devices, manage their profile, and view access logs. Staff users can manage device details, while administrators have full control over users and devices.
+IoTBay is a Java-based web application developed using the Model-View-Controller (MVC) architectural pattern. The system simulates an IoT device management platform where users can manage accounts and devices with strict role-based access control.
 
-The project follows the MVC (Model-View-Controller) architectural pattern and was developed using an Agile approach with iterative releases. It is built using Java, JSP, Servlets, Maven, and MySQL.
+The application supports three user roles:
 
-Running the Software
+- Admin  
+- Staff  
+- Customer (User)  
 
-Obtain the project by either cloning the repository or unzipping the folder.
+Each role has clearly defined permissions to ensure proper separation of responsibilities, security, and maintainability.
 
-Use create_database.sql to create and populate the database tables.
+This project demonstrates:
+- MVC architecture implementation
+- DAO pattern for database interaction
+- Role-based access control
+- Account activation/deactivation management
+- Access log tracking (login/logout auditing)
+- JUnit testing for DAO classes
+- Functional testing and defect logging documentation
 
-Use Maven to clean and compile the project:
-mvn clean compile
+---
 
-Deploy the "target/demo" folder onto a server (e.g., Apache Tomcat).
+## System Architecture
 
-Navigate to "target/demo/" in the browser to reach the landing page.
+The application follows the MVC pattern:
 
-MySQL Setup
+### Model Layer
+- Entity classes: `User`, `Device`, `AccessLog`
+- DAO classes: `UserDAO`, `DeviceDAO`, `AccessLogDAO`
+- JDBC-based database communication via `DBConnector`
 
-Download MySQL from:
-MySQL :: Download MySQL Installer
+### View Layer
+- JSP pages for UI rendering
+- Role-based conditional rendering
+- Form handling and user interaction
 
-Set up the MySQL server with:
-Port: 3306
-Password: 1111
+### Controller Layer
+- Java Servlets for request processing
+- Business logic enforcement
+- Role validation and access restriction
 
-Download the MySQL extension in VS Code (optional but recommended).
+---
 
-Go to the database tab.
+## Core Features
 
-Create a new connection using:
-Port: 3306
-Password: 1111
+### User Management (MVC Module)
 
-Copy everything from the create_database.sql file (in the Git repository), paste it into the SQL editor, and run the script to create the database and tables.
+This module allows the system administrator to manage user accounts.
 
-Login / Registration
+Admin capabilities:
+- Create users (Customer and Staff)
+- View user records
+- Search users by name
+- Update user details
+- Activate or deactivate accounts
+- Delete users
 
-Upon reaching the landing page, you will have two options: Login and Register.
+Staff and Customers:
+- View their own profile
+- Cannot edit other users
 
-Two types of registration are available:
-2.1 You can register a customer account by filling in your details normally.
-2.2 If you want to register a staff account, the staff PIN is required.
-Staff PIN: 0000
+Account activation status prevents deactivated users from logging into the system.
 
-To login as Admin, use the following credentials:
-Email: admin@iotbay.com
+---
 
-Password: admin123
+### Device Catalog Management (MVC Module)
 
-User Abilities
-
-Customers:
-
-View their profile
-
-View the device catalog
-
-View their access logs
+Customer:
+- View device catalog
 
 Staff:
-
-Edit device details within the catalog
+- Add new devices
+- Edit device details
+- Update stock quantities
 
 Admin:
+- Full CRUD operations on devices
+- Full management access
 
-Create, update, and delete customers
+---
 
-Create, update, and delete staff
+### Access Log Tracking
 
-Create, update, and delete devices
+The system automatically records:
+- Login timestamp
+- Logout timestamp
 
-Update account activation status
+Users can:
+- View their own access logs (read-only)
 
-Technologies Used
+Admins may:
+- View logs of other users (if permitted)
 
-Java
+Access logs cannot be edited or deleted through the user interface.
 
-JSP
+---
 
-Servlets
+## Running the Software
 
-Maven
+1. Clone the repository or download the project as a ZIP file.
 
-MySQL
+2. Create the database using the provided SQL script:
+   - Open `create_database.sql`
+   - Execute it in MySQL
 
-Apache Tomcat
+3. Compile the project using Maven:
+# IoTBay Web Application
 
-MVC Architecture
+## Project Overview
 
-This application was developed as part of the 41025 Introduction to Software Development course at UTS.
+IoTBay is a Java-based web application developed using the Model-View-Controller (MVC) architectural pattern. The system simulates an IoT device management platform where users can manage accounts and devices with strict role-based access control.
+
+The application supports three user roles:
+
+- Admin  
+- Staff  
+- Customer (User)  
+
+Each role has clearly defined permissions to ensure proper separation of responsibilities, security, and maintainability.
+
+This project demonstrates:
+- MVC architecture implementation
+- DAO pattern for database interaction
+- Role-based access control
+- Account activation/deactivation management
+- Access log tracking (login/logout auditing)
+- JUnit testing for DAO classes
+- Functional testing and defect logging documentation
+
+---
+
+## System Architecture
+
+The application follows the MVC pattern:
+
+### Model Layer
+- Entity classes: `User`, `Device`, `AccessLog`
+- DAO classes: `UserDAO`, `DeviceDAO`, `AccessLogDAO`
+- JDBC-based database communication via `DBConnector`
+
+### View Layer
+- JSP pages for UI rendering
+- Role-based conditional rendering
+- Form handling and user interaction
+
+### Controller Layer
+- Java Servlets for request processing
+- Business logic enforcement
+- Role validation and access restriction
+
+---
+
+## Core Features
+
+### User Management (MVC Module)
+
+This module allows the system administrator to manage user accounts.
+
+Admin capabilities:
+- Create users (Customer and Staff)
+- View user records
+- Search users by name
+- Update user details
+- Activate or deactivate accounts
+- Delete users
+
+Staff and Customers:
+- View their own profile
+- Cannot edit other users
+
+Account activation status prevents deactivated users from logging into the system.
+
+---
+
+### Device Catalog Management (MVC Module)
+
+Customer:
+- View device catalog
+
+Staff:
+- Add new devices
+- Edit device details
+- Update stock quantities
+
+Admin:
+- Full CRUD operations on devices
+- Full management access
+
+---
+
+### Access Log Tracking
+
+The system automatically records:
+- Login timestamp
+- Logout timestamp
+
+Users can:
+- View their own access logs (read-only)
+
+Admins may:
+- View logs of other users (if permitted)
+
+Access logs cannot be edited or deleted through the user interface.
+
+---
+
+## Running the Software
+
+1. Clone the repository or download the project as a ZIP file.
+
+2. Create the database using the provided SQL script:
+   - Open `create_database.sql`
+   - Execute it in MySQL
+
+3. Compile the project using Maven:
+# IoTBay Web Application
+
+## Project Overview
+
+IoTBay is a Java-based web application developed using the Model-View-Controller (MVC) architectural pattern. The system simulates an IoT device management platform where users can manage accounts and devices with strict role-based access control.
+
+The application supports three user roles:
+
+- Admin  
+- Staff  
+- Customer (User)  
+
+Each role has clearly defined permissions to ensure proper separation of responsibilities, security, and maintainability.
+
+This project demonstrates:
+- MVC architecture implementation
+- DAO pattern for database interaction
+- Role-based access control
+- Account activation/deactivation management
+- Access log tracking (login/logout auditing)
+- JUnit testing for DAO classes
+- Functional testing and defect logging documentation
+
+---
+
+## System Architecture
+
+The application follows the MVC pattern:
+
+### Model Layer
+- Entity classes: `User`, `Device`, `AccessLog`
+- DAO classes: `UserDAO`, `DeviceDAO`, `AccessLogDAO`
+- JDBC-based database communication via `DBConnector`
+
+### View Layer
+- JSP pages for UI rendering
+- Role-based conditional rendering
+- Form handling and user interaction
+
+### Controller Layer
+- Java Servlets for request processing
+- Business logic enforcement
+- Role validation and access restriction
+
+---
+
+## Core Features
+
+### User Management (MVC Module)
+
+This module allows the system administrator to manage user accounts.
+
+Admin capabilities:
+- Create users (Customer and Staff)
+- View user records
+- Search users by name
+- Update user details
+- Activate or deactivate accounts
+- Delete users
+
+Staff and Customers:
+- View their own profile
+- Cannot edit other users
+
+Account activation status prevents deactivated users from logging into the system.
+
+---
+
+### Device Catalog Management (MVC Module)
+
+Customer:
+- View device catalog
+
+Staff:
+- Add new devices
+- Edit device details
+- Update stock quantities
+
+Admin:
+- Full CRUD operations on devices
+- Full management access
+
+---
+
+### Access Log Tracking
+
+The system automatically records:
+- Login timestamp
+- Logout timestamp
+
+Users can:
+- View their own access logs (read-only)
+
+Admins may:
+- View logs of other users (if permitted)
+
+Access logs cannot be edited or deleted through the user interface.
+
+---
+
+## Running the Software
+
+1. Clone the repository or download the project as a ZIP file.
+
+2. Create the database using the provided SQL script:
+   - Open `create_database.sql`
+   - Execute it in MySQL
+
+3. Compile the project using Maven:
+  - mvn clean install
+
+4. Deploy the generated `target/demo` directory to Apache Tomcat.
+
+5. Start Tomcat.
+
+6. Open the browser and navigate to:
+   http://localhost:8080/demo/
+
+
+---
+
+## Login and Registration
+
+Upon reaching the landing page, you may choose:
+
+- Login
+- Register
+
+### Registration Types
+
+Customer Registration:
+- Fill in details normally.
+
+Staff Registration:
+- Requires staff PIN:
+    0000
+
+If the PIN matches, the account is created as a Staff account.
+Otherwise, it defaults to a Customer account.
+
+### Admin Login Credentials
+
+  Email: admin@iotbay.com
+  Password: admin123
+
+
+---
+
+## Role-Based Permissions
+
+### Customer
+- View profile
+- View device catalog
+- View access logs
+
+### Staff
+- All customer permissions
+- Edit device details
+- Manage stock
+
+### Admin
+- Create, update, delete users
+- Activate/deactivate accounts
+- Full device management
+- System-level control
+
+---
+
+## Database Setup (MySQL)
+
+1. Download MySQL from:
+   https://dev.mysql.com/downloads/installer/
+
+2. Install MySQL Server with:
+   - Port: 3306
+   - Password: 1111
+
+3. Open MySQL Workbench or the VS Code MySQL extension.
+
+4. Create a new connection:
+   - Host: localhost
+   - Port: 3306
+   - Username: root
+   - Password: 1111
+
+5. Open `create_database.sql` from the repository.
+
+6. Execute the script to create and populate all tables.
+
+---
+
+## Testing
+
+### Unit Testing
+
+JUnit test cases are provided for:
+- UserDAO
+- DeviceDAO
+
+These tests validate:
+- CRUD operations
+- Database updates
+- Search functionality
+- Stock updates
+- User activation updates
+
+### Functional Testing
+
+Manual test case documentation includes:
+- Role-based validation tests
+- Account activation/deactivation tests
+- Device management validation
+- Access log validation
+
+### Defect Logs
+
+The project includes structured defect documentation covering:
+- Identified issues
+- Root cause description
+- Responsible developer
+- Resolution status
+
+---
+
+## Security Implementation
+
+- Prepared statements used for all SQL queries
+- Role validation enforced in Servlets
+- Session-based authentication
+- Account status validation during login
+- Read-only access to access logs
+- Unauthorized access redirection
+
+---
+
+## Technical Stack
+
+- Java 17+
+- JSP / Servlets
+- Apache Tomcat 10+
+- MySQL 8+
+- Maven 3.8+
+- JDBC
+
+---
+
+## Deployment Notes
+
+- Ensure MySQL server is running before starting Tomcat.
+- Verify database credentials in `DBConnector`.
+- Confirm port 3306 is available.
+- Check Tomcat logs if deployment errors occur.
+
+---
+
+## Summary
+
+IoTBay is a full MVC-based web application demonstrating:
+
+- Structured backend architecture
+- Role-based access control
+- Secure database operations
+- Account lifecycle management
+- Access auditing system
+- DAO pattern implementation
+- Comprehensive testing practices
+
+This project showcases complete backend web development using Java EE technologies and sound software engineering principles.
+
+
